@@ -17,7 +17,7 @@ function Items() {
     if (context.packs) {
       let Packs = context.packs;
 
-      if (Packs[index].items.length <= 8) {
+      if (Packs[index].items.length < 8) {
         Packs[index].items.push({ name, price, url, select: false });
         context.setPacks(Packs);
         setName("");
