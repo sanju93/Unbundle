@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import Items from "./components/Items";
+import Packs from "./components/packs";
+import {createBrowserRouter,RouterProvider} from 'react-router-dom';
+import { useState } from "react";
+import { packsContext } from "./context/packs";
 
 function App() {
+
+  let [packs, setPacks] = useState([]);
+
+  let router = createBrowserRouter([
+    {
+    path : '/',
+    element : <Packs/>
+  },
+  {
+    path : '/items/:index',
+    element : <Items/>
+  }
+])
+
   return (
+    <packsContext.Provider value={{packs,setPacks}}>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <RouterProvider router={router}/>
     </div>
+    </packsContext.Provider>
   );
 }
 
